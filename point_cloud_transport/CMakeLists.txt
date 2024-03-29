@@ -58,36 +58,34 @@ target_link_libraries(${PROJECT_NAME}_plugins PRIVATE
   ${PROJECT_NAME}
   pluginlib::pluginlib)
 
-add_library(republish_node SHARED src/republish.cpp)
-target_link_libraries(republish_node
+add_library(pc_republish_node SHARED src/republish.cpp)
+target_link_libraries(pc_republish_node PRIVATE
   ${PROJECT_NAME}
+  pluginlib::pluginlib
+  rclcpp_components::component
+  rclcpp::rclcpp
 )
-target_compile_definitions(republish_node PRIVATE "POINT_CLOUD_TRANSPORT_BUILDING_DLL")
-ament_target_dependencies(republish_node
-  pluginlib
-  rclcpp_components
-  rclcpp
-)
-target_include_directories(republish_node PUBLIC
+target_compile_definitions(pc_republish_node PRIVATE "POINT_CLOUD_TRANSPORT_BUILDING_DLL")
+target_include_directories(pc_republish_node PRIVATE
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
   "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>")
-rclcpp_components_register_nodes(republish_node "point_cloud_transport::Republisher")
+rclcpp_components_register_nodes(pc_republish_node "point_cloud_transport::Republisher")
 
-rclcpp_components_register_node(republish_node
+rclcpp_components_register_node(pc_republish_node
   PLUGIN "point_cloud_transport::Republisher"
   EXECUTABLE republish
 )
 
 # Build list_transports
 add_executable(list_transports src/list_transports.cpp)
-target_link_libraries(list_transports
+target_link_libraries(list_transports PRIVATE
   ${PROJECT_NAME}
   pluginlib::pluginlib)
 
 # Install plugin descriptions
 pluginlib_export_plugin_description_file(${PROJECT_NAME} default_plugins.xml)
 
-install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}_plugins republish_node
+install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}_plugins pc_republish_node
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
