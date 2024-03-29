@@ -2,6 +2,13 @@
 Changelog for package point_cloud_transport
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Rename the republish_node to pc_republish_node. (`#75 <https://github.com/ros-perception/point_cloud_transport/issues/75>`_)
+* Fixed flake8 errors (`#72 <https://github.com/ros-perception/point_cloud_transport/issues/72>`_)
+* Added documentation (`#69 <https://github.com/ros-perception/point_cloud_transport/issues/69>`_)
+* Contributors: Alejandro Hernández Cordero, Chris Lalancette
+
 3.0.5 (2024-03-15)
 -------------------
 * Fixed SubscriberFilter linking issue on windows (`#64 <https://github.com/ros-perception/point_cloud_transport/issues/64>`_)
