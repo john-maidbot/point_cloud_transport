@@ -42,6 +42,7 @@
 
 #include <sensor_msgs/msg/point_cloud2.hpp>
 
+#include <point_cloud_transport/loader_fwds.hpp>
 #include <point_cloud_transport/publisher.hpp>
 #include <point_cloud_transport/single_subscriber_publisher.hpp>
 #include <point_cloud_transport/subscriber.hpp>
