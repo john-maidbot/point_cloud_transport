@@ -87,6 +87,16 @@ public:
     return {};
   }
 
+  //! template function for getting parameter of a given type
+  template<typename T>
+  bool getParam(const std::string & name, T & value) const
+  {
+    if (impl_) {
+      return impl_->node_->get_parameter(name, value);
+    }
+    return false;
+  }
+
   template<typename T>
   bool declareParam(
     const std::string parameter_name, const T value,
