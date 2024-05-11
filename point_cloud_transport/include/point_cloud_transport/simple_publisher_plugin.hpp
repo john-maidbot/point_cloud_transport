@@ -94,7 +94,13 @@ public:
   bool getParam(const std::string & name, T & value) const
   {
     if (simple_impl_) {
-      return simple_impl_->node_->get_parameter(name, value);
+      uint ns_len = simple_impl_->node_->get_effective_namespace().length();
+      std::string param_base_name = getTopic().substr(ns_len);
+      std::replace(param_base_name.begin(), param_base_name.end(), '/', '.');
+
+      std::string param_name = param_base_name + "." + name;
+
+      return simple_impl_->node_->get_parameter(param_name, value);
     }
     return false;
   }
