@@ -2,6 +2,21 @@
 Changelog for package point_cloud_transport
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.0.18 (2024-05-16)
+-------------------
+* [rolling] Get user specified parameters at startup (`#80 <https://github.com/ros-perception/point_cloud_transport/issues/80>`_) (`#83 <https://github.com/ros-perception/point_cloud_transport/issues/83>`_)
+  Co-authored-by: Alejandro Hernández Cordero <ahcorde@gmail.com>
+  (cherry picked from commit 90c603a1e8fb56c3203ff6870e4f2205c37e59b4)
+  Co-authored-by: john-maidbot <78750993+john-maidbot@users.noreply.github.com>
+* Rename the republish_node to pc_republish_node. (`#75 <https://github.com/ros-perception/point_cloud_transport/issues/75>`_) (`#77 <https://github.com/ros-perception/point_cloud_transport/issues/77>`_)
+  The major reason for this is that image_transport already
+  has a republish_node, and when we are building for distribution
+  we can't have two files named /opt/ros/rolling/lib/librepublish_node.so
+  Rename this one to libpc_republish_node, which should remove
+  the conflict.
+  Co-authored-by: Chris Lalancette <clalancette@gmail.com>
+* Contributors: Alejandro Hernández Cordero, mergify[bot]
+
 1.0.17 (2023-03-26)
 -------------------
 * Cleanup republisher (`#58 <https://github.com/ros-perception/point_cloud_transport/issues/58>`_) (`#70 <https://github.com/ros-perception/point_cloud_transport/issues/70>`_)
