@@ -2,6 +2,15 @@
 Changelog for package point_cloud_transport
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+4.0.1 (2024-05-24)
+------------------
+* [rolling] Get user specified parameters at startup (`#80 <https://github.com/ros-perception/point_cloud_transport/issues/80>`_) (`#82 <https://github.com/ros-perception/point_cloud_transport/issues/82>`_)
+  Co-authored-by: Alejandro Hernández Cordero <ahcorde@gmail.com>
+  (cherry picked from commit 90c603a1e8fb56c3203ff6870e4f2205c37e59b4)
+  Co-authored-by: john-maidbot <78750993+john-maidbot@users.noreply.github.com>
+  Co-authored-by: Alejandro Hernández Cordero <ahcorde@gmail.com>
+* Contributors: mergify[bot]
+
 4.0.0 (2024-03-29)
 ------------------
 * Rename the republish_node to pc_republish_node. (`#75 <https://github.com/ros-perception/point_cloud_transport/issues/75>`_)
