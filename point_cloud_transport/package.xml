@@ -24,6 +24,7 @@
   <depend>rclcpp_components</depend>
   <depend>rclcpp</depend>
   <depend>rcpputils</depend>
+  <depend>rmw</depend>
   <depend>sensor_msgs</depend>
 
   <test_depend>ament_lint_common</test_depend>
