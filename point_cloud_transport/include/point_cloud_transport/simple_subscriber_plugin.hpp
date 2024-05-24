@@ -87,6 +87,22 @@ public:
     return {};
   }
 
+  //! template function for getting parameter of a given type
+  template<typename T>
+  bool getParam(const std::string & parameter_name, T & value) const
+  {
+    if (impl_) {
+      uint ns_len = impl_->node_->get_effective_namespace().length();
+      std::string param_base_name = getTopic().substr(ns_len);
+      std::replace(param_base_name.begin(), param_base_name.end(), '/', '.');
+
+      std::string param_name = param_base_name + "." + parameter_name;
+
+      return impl_->node_->get_parameter(param_name, value);
+    }
+    return false;
+  }
+
   template<typename T>
   bool declareParam(
     const std::string parameter_name, const T value,
