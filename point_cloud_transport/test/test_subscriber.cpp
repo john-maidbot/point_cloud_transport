@@ -33,6 +33,8 @@
 
 #include <rclcpp/rclcpp.hpp>
 
+#include <sensor_msgs/msg/point_cloud2.hpp>
+
 #include "point_cloud_transport/point_cloud_transport.hpp"
 
 class TestSubscriber : public ::testing::Test
