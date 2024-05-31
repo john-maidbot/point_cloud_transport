@@ -42,13 +42,29 @@
 #include "point_cloud_transport/point_cloud_transport.hpp"
 #include "point_cloud_transport/publisher.hpp"
 #include "point_cloud_transport/publisher_plugin.hpp"
-#include "point_cloud_transport/republish.hpp"
 #include "point_cloud_transport/subscriber.hpp"
 
 using namespace std::chrono_literals;
 
 namespace point_cloud_transport
 {
+class Republisher : public rclcpp::Node
+{
+public:
+  //! Constructor
+  explicit Republisher(const rclcpp::NodeOptions & options);
+
+private:
+  void initialize();
+
+  std::shared_ptr<point_cloud_transport::PointCloudTransport> pct;
+  rclcpp::TimerBase::SharedPtr timer_;
+  bool initialized_{false};
+  point_cloud_transport::Subscriber sub;
+  std::shared_ptr<point_cloud_transport::PublisherPlugin> pub;
+  std::shared_ptr<point_cloud_transport::Publisher> simple_pub;
+};
+
 Republisher::Republisher(const rclcpp::NodeOptions & options)
 : Node("point_cloud_republisher", options)
 {

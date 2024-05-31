@@ -2,6 +2,12 @@
 Changelog for package point_cloud_transport
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+5.0.0 (2024-05-13)
+------------------
+* [rolling] Get user specified parameters at startup (`#80 <https://github.com/ros-perception/point_cloud_transport//issues/80>`_)
+  Co-authored-by: Alejandro Hernández Cordero <ahcorde@gmail.com>
+* Contributors: john-maidbot
+
 4.1.0 (2024-04-30)
 ------------------
 
