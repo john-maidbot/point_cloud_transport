@@ -105,13 +105,26 @@ void Republisher::initialize()
 
   pct = std::make_shared<point_cloud_transport::PointCloudTransport>(this->shared_from_this());
 
+  auto qos_override_options = rclcpp::QosOverridingOptions(
+    {
+      rclcpp::QosPolicyKind::Depth,
+      rclcpp::QosPolicyKind::Durability,
+      rclcpp::QosPolicyKind::History,
+      rclcpp::QosPolicyKind::Reliability,
+    });
+  rclcpp::SubscriptionOptions sub_options;
+  rclcpp::PublisherOptions pub_options;
+  pub_options.qos_overriding_options = qos_override_options;
+  sub_options.qos_overriding_options = qos_override_options;
+
   if (out_transport.empty()) {
     // Use all available transports for output
     this->simple_pub =
       std::make_shared<point_cloud_transport::Publisher>(
       pct->advertise(
         out_topic,
-        rmw_qos_profile_default));
+        rmw_qos_profile_default,
+        pub_options));
 
     RCLCPP_INFO_STREAM(
       this->get_logger(),
@@ -126,7 +139,7 @@ void Republisher::initialize()
     const point_cloud_transport::TransportHints hint(in_transport);
     this->sub = pct->subscribe(
       in_topic, static_cast<uint32_t>(1),
-      pub_mem_fn, this->simple_pub, &hint);
+      pub_mem_fn, this->simple_pub, &hint, sub_options);
   } else {
     // Load transport plugin
     typedef point_cloud_transport::PublisherPlugin Plugin;
@@ -137,7 +150,7 @@ void Republisher::initialize()
     auto instance = loader->createUniqueInstance(lookup_name);
     // DO NOT use instance after this line
     this->pub = std::move(instance);
-    pub->advertise(this->shared_from_this(), out_topic);
+    pub->advertise(this->shared_from_this(), out_topic, rmw_qos_profile_default, pub_options);
 
     RCLCPP_INFO_STREAM(
       this->get_logger(),
@@ -154,7 +167,7 @@ void Republisher::initialize()
     const point_cloud_transport::TransportHints hint(in_transport);
     this->sub = pct->subscribe(
       in_topic, static_cast<uint32_t>(1),
-      pub_mem_fn, pub, &hint);
+      pub_mem_fn, pub, &hint, sub_options);
   }
   RCLCPP_INFO_STREAM(
     this->get_logger(),
