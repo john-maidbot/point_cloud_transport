@@ -211,10 +211,10 @@ public:
     const std::string & base_topic, rmw_qos_profile_t custom_qos,
     const std::function<void(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &)> & callback,
     const VoidPtr & tracked_object = {},
-    const point_cloud_transport::TransportHints * transport_hints = nullptr)
+    const point_cloud_transport::TransportHints * transport_hints = nullptr,
+    rclcpp::SubscriptionOptions options = rclcpp::SubscriptionOptions())
   {
     (void)tracked_object;
-    rclcpp::SubscriptionOptions options = rclcpp::SubscriptionOptions();
     return Subscriber(
       node_, base_topic, callback, sub_loader_,
       getTransportOrDefault(transport_hints), custom_qos, options);
