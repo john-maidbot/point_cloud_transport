@@ -223,22 +223,6 @@ public:
   //! Subscribe to a point cloud topic, version for arbitrary std::function object.
   POINT_CLOUD_TRANSPORT_PUBLIC
   point_cloud_transport::Subscriber subscribe(
-    const std::string & base_topic, rmw_qos_profile_t custom_qos,
-    const std::function<void(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &)> & callback,
-    const VoidPtr & tracked_object = {},
-    const point_cloud_transport::TransportHints * transport_hints = nullptr,
-    rclcpp::SubscriptionOptions options = rclcpp::SubscriptionOptions())
-  {
-    (void)tracked_object;
-    return Subscriber(
-      node_, base_topic, callback, sub_loader_,
-      getTransportOrDefault(transport_hints), custom_qos, options);
-  }
-
-
-  //! Subscribe to a point cloud topic, version for arbitrary std::function object.
-  POINT_CLOUD_TRANSPORT_PUBLIC
-  point_cloud_transport::Subscriber subscribe(
     const std::string & base_topic, uint32_t queue_size,
     const std::function<void(const sensor_msgs::msg::PointCloud2::ConstSharedPtr &)> & callback,
     const VoidPtr & tracked_object = {},
