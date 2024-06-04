@@ -300,7 +300,7 @@ public:
     return subscribe(
       base_topic, custom_qos, std::bind(
         fp,
-        obj, std::placeholders::_1), obj, transport_hints);
+        obj, std::placeholders::_1), obj, transport_hints, options);
   }
 
   template<class T>
