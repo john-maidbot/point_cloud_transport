@@ -1,7 +1,5 @@
 # point_cloud_transport
 
-<<<<<<< HEAD
-=======
 [![Licence](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ROS2 Distro | Build Status | Package build |
@@ -11,7 +9,6 @@ Jazzy |  [![Build Status](https://build.ros2.org/buildStatus/icon?job=Jdev__poin
 Iron |  [![Build Status](https://build.ros2.org/buildStatus/icon?job=Idev__point_cloud_transport__ubuntu_jammy_amd64)](https://build.ros2.org/job/Idev__point_cloud_transport__ubuntu_jammy_amd64/) |  [![Build Status](https://build.ros2.org/buildStatus/icon?job=Ibin_uJ64__point_cloud_transport__ubuntu_jammy_amd64__binary)](https://build.ros2.org/job/Ibin_uJ64__point_cloud_transport__ubuntu_jammy_amd64__binary/) |
 Humble |  [![Build Status](https://build.ros2.org/buildStatus/icon?job=Hdev__point_cloud_transport__ubuntu_jammy_amd64)](https://build.ros2.org/job/Hdev__point_cloud_transport__ubuntu_jammy_amd64/) |  [![Build Status](https://build.ros2.org/buildStatus/icon?job=Hbin_uJ64__point_cloud_transport__ubuntu_jammy_amd64__binary)](https://build.ros2.org/job/Hbin_uJ64__point_cloud_transport__ubuntu_jammy_amd64__binary/) |
 
->>>>>>> 2fc6720 (update table (#90))
 ## Description
 
 [point_cloud_transport](https://github.com/ros-perception/point_cloud_transport) is a [ROS 2](https://www.ros.org/) package for subscribing to and publishing [PointCloud2](http://docs.ros.org/latest/api/sensor_msgs/html/msg/PointCloud2.html) messages via different transport layers.
