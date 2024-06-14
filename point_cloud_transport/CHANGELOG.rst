@@ -2,6 +2,25 @@
 Changelog for package point_cloud_transport
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+5.0.1 (2024-06-14)
+------------------
+* Removed warning (`#89 <https://github.com/ros-perception/point_cloud_transport/issues/89>`_)
+* republisher: qos override pub and sub (`#88 <https://github.com/ros-perception/point_cloud_transport/issues/88>`_)
+* Stop using ament_target_dependencies. (`#86 <https://github.com/ros-perception/point_cloud_transport/issues/86>`_)
+  We are slowly moving away from its use, so stop using it
+  here.  While we are in here, notice some things that makes
+  this easier:
+  1. pluginlib is absolutely a public dependency of this package.
+  Because of that, we can just rely on the PUBLIC export of it,
+  and we don't need to link it into every test.  But that also means
+  we don't need some of the forward-declarations that were in
+  loader_fwds.hpp, as we can just get those through the header file.
+  2. republish.hpp doesn't really need to exist at all.  That's
+  because it is only a header file, but the implementation is in
+  an executable.  Thus, no downstream could ever use it.  So just
+  remove the file and put the declaration straight into the cpp file.
+* Contributors: Alejandro Hernández Cordero, Chris Lalancette
+
 5.0.0 (2024-05-13)
 ------------------
 * [rolling] Get user specified parameters at startup (`#80 <https://github.com/ros-perception/point_cloud_transport//issues/80>`_)
