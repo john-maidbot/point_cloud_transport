@@ -2,6 +2,9 @@
 Changelog for package point_cloud_transport
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 5.0.1 (2024-06-14)
 ------------------
 * Removed warning (`#89 <https://github.com/ros-perception/point_cloud_transport/issues/89>`_)
