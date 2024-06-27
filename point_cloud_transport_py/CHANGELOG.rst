@@ -2,6 +2,9 @@
 Changelog for package point_cloud_transport_py
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 4.0.1 (2024-05-24)
 ------------------
 

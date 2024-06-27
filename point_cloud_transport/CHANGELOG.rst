@@ -2,6 +2,11 @@
 Changelog for package point_cloud_transport
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Stop using ament_target_dependencies. (`#86 <https://github.com/ros-perception/point_cloud_transport/issues/86>`_) (`#87 <https://github.com/ros-perception/point_cloud_transport/issues/87>`_)
+  Co-authored-by: Chris Lalancette <clalancette@gmail.com>
+
 4.0.1 (2024-05-24)
 ------------------
 * [rolling] Get user specified parameters at startup (`#80 <https://github.com/ros-perception/point_cloud_transport/issues/80>`_) (`#82 <https://github.com/ros-perception/point_cloud_transport/issues/82>`_)
