@@ -36,7 +36,7 @@
 #include <string>
 
 #include <rclcpp/rclcpp.hpp>
-#include <message_filters/simple_filter.h>  // NOLINT
+#include <message_filters/simple_filter.hpp>  // NOLINT
 #include <sensor_msgs/msg/point_cloud2.hpp>
 
 #include <point_cloud_transport/point_cloud_transport.hpp>
