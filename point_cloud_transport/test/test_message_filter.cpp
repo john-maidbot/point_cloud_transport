@@ -28,12 +28,12 @@
 
 #include <gtest/gtest.h>
 
+#include <string>
+#include <memory>
+
 #include <message_filters/subscriber.hpp>
 #include <message_filters/sync_policies/approximate_time.hpp>
 #include <message_filters/synchronizer.hpp>
-
-#include <string>
-#include <memory>
 
 #include <rclcpp/rclcpp.hpp>
 
