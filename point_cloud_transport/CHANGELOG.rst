@@ -2,6 +2,11 @@
 Changelog for package point_cloud_transport
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+5.0.3 (2024-07-19)
+------------------
+* Updated deprecated message filter headers (`#94 <https://github.com/ros-perception/point_cloud_transport/issues/94>`_)
+* Contributors: Alejandro Hernández Cordero
+
 5.0.2 (2024-06-17)
 ------------------
 
