@@ -95,7 +95,7 @@ void pointCloud2ToString(const sensor_msgs::msg::PointCloud2 & cloud, std::strin
 }  // namespace point_cloud_transport
 
 // Bindings for STL vector of strings
-PYBIND11_MAKE_OPAQUE(std::vector<std::string>);
+PYBIND11_MAKE_OPAQUE(std::vector<std::string>)
 
 // Bindings for the PointCloudCodec class
 PYBIND11_MODULE(_codec, m)
