@@ -2,8 +2,8 @@
 Changelog for package point_cloud_transport_py
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+5.0.4 (2024-10-03)
+------------------
 * remove extra semicolon (`#98 <https://github.com/ros-perception/point_cloud_transport/issues/98>`_)
 * Contributors: Manu
 
