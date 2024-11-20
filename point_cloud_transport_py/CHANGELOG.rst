@@ -2,8 +2,8 @@
 Changelog for package point_cloud_transport_py
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+5.1.0 (2024-11-20)
+------------------
 * Remove use of python_cmake_module. (`#63 <https://github.com/ros-perception/point_cloud_transport/issues/63>`_)
 * Contributors: Chris Lalancette
 
