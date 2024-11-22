@@ -18,6 +18,8 @@
   <buildtool_depend>ament_cmake_ros</buildtool_depend>
   <buildtool_depend>ament_cmake_python</buildtool_depend>
 
+  <build_depend>python3-dev</build_depend>
+
   <depend>point_cloud_transport</depend>
   <depend>pybind11_vendor</depend>
   <depend>pluginlib</depend>
