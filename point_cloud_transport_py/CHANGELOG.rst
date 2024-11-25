@@ -2,8 +2,8 @@
 Changelog for package point_cloud_transport_py
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+5.1.1 (2024-11-25)
+------------------
 * Add in dependency on python3-dev. (`#103 <https://github.com/ros-perception/point_cloud_transport/issues/103>`_)
 * Contributors: Chris Lalancette
 
