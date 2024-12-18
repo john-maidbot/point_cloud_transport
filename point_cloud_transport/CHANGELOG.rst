@@ -2,6 +2,9 @@
 Changelog for package point_cloud_transport
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+
 4.0.2 (2024-06-27)
 ------------------
 * Stop using ament_target_dependencies. (`#86 <https://github.com/ros-perception/point_cloud_transport/issues/86>`_) (`#87 <https://github.com/ros-perception/point_cloud_transport/issues/87>`_)
