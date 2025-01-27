@@ -17,6 +17,7 @@ find_package(ament_cmake_ros REQUIRED)
 find_package(message_filters REQUIRED)
 find_package(pluginlib REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(rclcpp_lifecycle REQUIRED)
 find_package(rclcpp_components REQUIRED)
 find_package(rcpputils REQUIRED)
 find_package(rmw REQUIRED)
@@ -43,6 +44,7 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
   message_filters::message_filters
   pluginlib::pluginlib
   rclcpp::rclcpp
+  rclcpp_lifecycle::rclcpp_lifecycle
   rcpputils::rcpputils
   rmw::rmw
   ${sensor_msgs_TARGETS}

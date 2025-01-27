@@ -38,8 +38,12 @@
 namespace point_cloud_transport
 {
 
-void PublisherPlugin::advertise(
-  std::shared_ptr<rclcpp::Node> node,
+template class PublisherPlugin<rclcpp::Node>;
+template class PublisherPlugin<rclcpp_lifecycle::LifecycleNode>;
+
+template<class NodeType = rclcpp::Node>
+void PublisherPlugin<NodeType>::advertise(
+  std::shared_ptr<NodeType> node,
   const std::string & base_topic,
   rmw_qos_profile_t custom_qos,
   const rclcpp::PublisherOptions & options)
@@ -47,13 +51,15 @@ void PublisherPlugin::advertise(
   advertiseImpl(node, base_topic, custom_qos, options);
 }
 
-void PublisherPlugin::publishPtr(const sensor_msgs::msg::PointCloud2::ConstSharedPtr & message)
+template<class NodeType = rclcpp::Node>
+void PublisherPlugin<NodeType>::publishPtr(const sensor_msgs::msg::PointCloud2::ConstSharedPtr & message)
 const
 {
   publish(*message);
 }
 
-std::string PublisherPlugin::getLookupName(const std::string & transport_name)
+template<class NodeType = rclcpp::Node>
+std::string PublisherPlugin<NodeType>::getLookupName(const std::string & transport_name)
 {
   return "point_cloud_transport/" + transport_name + "_pub";
 }
