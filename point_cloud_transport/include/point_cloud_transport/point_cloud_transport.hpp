@@ -57,6 +57,7 @@ namespace point_cloud_transport
 //! PointCloudTransport is analogous to rclcpp::Node in that it contains functions
 //! to create publishers and subscriptions of PointCloud2 topics.
 
+template<class NodeType = rclcpp::Node>
 class PointCloudTransportLoader
 {
 public:
@@ -80,21 +81,21 @@ public:
 
   //! The loader that can load publisher plugins.
   POINT_CLOUD_TRANSPORT_PUBLIC
-  PubLoaderPtr getPublisherLoader() const;
+  PubLoaderPtr<NodeType> getPublisherLoader() const;
 
   //! The loader that can load subscriber plugins.
   POINT_CLOUD_TRANSPORT_PUBLIC
   SubLoaderPtr getSubscriberLoader() const;
 
   POINT_CLOUD_TRANSPORT_PUBLIC
-  point_cloud_transport::PubLoaderPtr getPubLoader();
+  point_cloud_transport::PubLoaderPtr<NodeType> getPubLoader();
 
   POINT_CLOUD_TRANSPORT_PUBLIC
   point_cloud_transport::SubLoaderPtr getSubLoader();
 
 protected:
-  point_cloud_transport::PubLoaderPtr pub_loader_;
-  point_cloud_transport::SubLoaderPtr sub_loader_;
+  point_cloud_transport::PubLoaderPtr<NodeType> pub_loader_;
+  point_cloud_transport::SubLoaderPtr<NodeType> sub_loader_;
 };
 
 /// \brief Advertise every available transport on pointcloud topics, free function version.
@@ -103,9 +104,10 @@ protected:
 /// \param custom_qos The QoS profile to use for the underlying publisher(s)
 /// \param options The publisher options to use for the underlying publisher(s)
 /// \return The advertised publisher
+template<class NodeType = rclcpp::Node>
 POINT_CLOUD_TRANSPORT_PUBLIC
-Publisher create_publisher(
-  std::shared_ptr<rclcpp::Node> node,
+Publisher<NodeType> create_publisher(
+  std::shared_ptr<NodeType> node,
   const std::string & base_topic,
   rmw_qos_profile_t custom_qos = rmw_qos_profile_default,
   const rclcpp::PublisherOptions & options = rclcpp::PublisherOptions());
@@ -127,6 +129,7 @@ Subscriber create_subscription(
   rmw_qos_profile_t custom_qos = rmw_qos_profile_default,
   rclcpp::SubscriptionOptions options = rclcpp::SubscriptionOptions());
 
+template<class NodeType = rclcpp::Node>
 class PointCloudTransport : public PointCloudTransportLoader
 {
   using VoidPtr = std::shared_ptr<void>;
@@ -134,7 +137,7 @@ class PointCloudTransport : public PointCloudTransportLoader
 public:
   //! Constructor
   POINT_CLOUD_TRANSPORT_PUBLIC
-  explicit PointCloudTransport(rclcpp::Node::SharedPtr node);
+  explicit PointCloudTransport(NodeType::SharedPtr node);
 
   POINT_CLOUD_TRANSPORT_PUBLIC
   ~PointCloudTransport() override = default;
@@ -154,7 +157,7 @@ public:
 
   //! Advertise a PointCloud2 topic, simple version.
   POINT_CLOUD_TRANSPORT_PUBLIC
-  Publisher advertise(
+  Publisher<NodeType> advertise(
     const std::string & base_topic,
     uint32_t queue_size)
   {
@@ -166,7 +169,7 @@ public:
 
   //! Advertise a PointCloud2 topic, simple version.
   POINT_CLOUD_TRANSPORT_PUBLIC
-  Publisher advertise(
+  Publisher<NodeType> advertise(
     const std::string & base_topic,
     uint32_t queue_size,
     const rclcpp::PublisherOptions & options)
@@ -177,7 +180,7 @@ public:
   }
 
   POINT_CLOUD_TRANSPORT_PUBLIC
-  Publisher advertise(
+  Publisher<NodeType> advertise(
     const std::string & base_topic,
     rmw_qos_profile_t custom_qos,
     const rclcpp::PublisherOptions & options = rclcpp::PublisherOptions())
@@ -318,7 +321,7 @@ public:
   }
 
 private:
-  rclcpp::Node::SharedPtr node_;
+  NodeType::SharedPtr node_;
 };
 
 }  // namespace point_cloud_transport

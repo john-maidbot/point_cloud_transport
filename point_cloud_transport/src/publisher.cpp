@@ -51,9 +51,13 @@
 namespace point_cloud_transport
 {
 
-struct Publisher::Impl
+template class Publisher<rclcpp::Node>;
+template class Publisher<rclcpp_lifecycle::LifecycleNode>;
+
+template<class NodeType>
+struct Publisher<NodeType>::Impl
 {
-  explicit Impl(std::shared_ptr<rclcpp::Node> node)
+  explicit Impl(std::shared_ptr<NodeType> node)
   : logger_(node->get_logger()),
     unadvertised_(false)
   {
@@ -96,14 +100,15 @@ struct Publisher::Impl
 
   rclcpp::Logger logger_;
   std::string base_topic_;
-  PubLoaderPtr loader_;
-  std::vector<std::shared_ptr<PublisherPlugin>> publishers_;
+  PubLoaderPtr<NodeType> loader_;
+  std::vector<std::shared_ptr<PublisherPlugin<NodeType>>> publishers_;
   bool unadvertised_;
 };
 
-Publisher::Publisher(
-  std::shared_ptr<rclcpp::Node> node, const std::string & base_topic,
-  PubLoaderPtr loader, rmw_qos_profile_t custom_qos,
+template<class NodeType>
+Publisher<NodeType>::Publisher(
+  std::shared_ptr<NodeType> node, const std::string & base_topic,
+  PubLoaderPtr<NodeType> loader, rmw_qos_profile_t custom_qos,
   const rclcpp::PublisherOptions & options)
 : impl_(std::make_shared<Impl>(node))
 {
@@ -166,7 +171,8 @@ Publisher::Publisher(
   }
 }
 
-uint32_t Publisher::getNumSubscribers() const
+template<class NodeType>
+uint32_t Publisher<NodeType>::getNumSubscribers() const
 {
   if (impl_ && impl_->isValid()) {
     return impl_->getNumSubscribers();
@@ -174,7 +180,8 @@ uint32_t Publisher::getNumSubscribers() const
   return 0;
 }
 
-std::string Publisher::getTopic() const
+template<class NodeType>
+std::string Publisher<NodeType>::getTopic() const
 {
   if (impl_) {
     return impl_->getTopic();
@@ -182,7 +189,8 @@ std::string Publisher::getTopic() const
   return {};
 }
 
-void Publisher::publish(const sensor_msgs::msg::PointCloud2 & message) const
+template<class NodeType>
+void Publisher<NodeType>::publish(const sensor_msgs::msg::PointCloud2 & message) const
 {
   if (!impl_ || !impl_->isValid()) {
     // TODO(ros2) Switch to RCUTILS_ASSERT when ros2/rcutils#112 is merged
@@ -198,7 +206,8 @@ void Publisher::publish(const sensor_msgs::msg::PointCloud2 & message) const
   }
 }
 
-void Publisher::publish(const sensor_msgs::msg::PointCloud2::ConstSharedPtr & message) const
+template<class NodeType>
+void Publisher<NodeType>::publish(const sensor_msgs::msg::PointCloud2::ConstSharedPtr & message) const
 {
   if (!impl_ || !impl_->isValid()) {
     // TODO(ros2) Switch to RCUTILS_ASSERT when ros2/rcutils#112 is merged
@@ -214,7 +223,8 @@ void Publisher::publish(const sensor_msgs::msg::PointCloud2::ConstSharedPtr & me
   }
 }
 
-void Publisher::shutdown()
+template<class NodeType>
+void Publisher<NodeType>::shutdown()
 {
   if (impl_) {
     impl_->shutdown();
@@ -222,7 +232,8 @@ void Publisher::shutdown()
   }
 }
 
-Publisher::operator void *() const
+Publisher<NodeType>
+Publisher<NodeType>::operator void *() const
 {
   return (impl_ && impl_->isValid()) ? reinterpret_cast<void *>(1) : reinterpret_cast<void *>(0);
 }

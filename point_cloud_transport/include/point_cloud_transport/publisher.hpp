@@ -37,6 +37,7 @@
 
 #include "rclcpp/macros.hpp"
 #include "rclcpp/node.hpp"
+#include "rclcpp_lifecycle/lifecycle_node.hpp"
 
 #include <sensor_msgs/msg/point_cloud2.hpp>
 
@@ -48,6 +49,7 @@
 namespace point_cloud_transport
 {
 
+template<class NodeType = rclcpp::Node>
 class Publisher
 {
 public:
@@ -57,7 +59,7 @@ public:
 
   POINT_CLOUD_TRANSPORT_PUBLIC
   Publisher(
-    std::shared_ptr<rclcpp::Node> node,
+    std::shared_ptr<NodeType> node,
     const std::string & base_topic,
     PubLoaderPtr loader,
     rmw_qos_profile_t custom_qos,
@@ -107,7 +109,7 @@ public:
 private:
   struct Impl;
   std::shared_ptr<Impl> impl_;
-  friend class PointCloudTransport;
+  friend class PointCloudTransport<NodeType>;
 };
 
 }  // namespace point_cloud_transport
